@@ -8,21 +8,33 @@ import styles from './App.module.css';
 
 class App extends React.Component {
 
+    state = {
+        data: {},
+    }
+
+
     // bringing in the data
     // to make the componentDidMount we need to
     // put 'async keyword in front of the function'
     async componentDidMount() {
-        const data = await fetchData()
+        const fetchedData = await fetchData()
 
-        console.log(data)
-
+        this.setState({data: fetchedData});
+    
     }
 
     render() {
+        // bringing the data from the state
+        const { data } = this.state;
+
         return (
             <div className={styles.container}>
-                <Cards />
+                
+                {/* sending the data as props */}
+                <Cards data={ data } />
+
                 <CountryPicker />
+                
                 <Chart />
             </div>
         )
