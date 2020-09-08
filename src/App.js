@@ -26,6 +26,7 @@ class App extends React.Component {
     render() {
         // bringing the data from the state
         const { data } = this.state;
+        // console.log(data)
 
         return (
             <div className={styles.container}>
@@ -34,7 +35,7 @@ class App extends React.Component {
                 <Cards data={ data } />
 
                 <CountryPicker />
-                
+
                 <Chart />
             </div>
         )

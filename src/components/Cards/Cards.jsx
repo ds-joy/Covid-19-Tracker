@@ -1,11 +1,22 @@
 import React from 'react';
 import { Card, CardContent, Typography, Grid } from '@material-ui/core';
+import CountUp from 'react-countup';
 
 import styles from './Cards.module.css';
 
 
-const Cards = (props) => {
-    console.log(props)
+const Cards = ( { data: { recovered, confirmed, deaths, lastUpdate}}) => {
+    
+    if(!recovered)
+    {
+        return (
+            <h3>Loading...</h3>
+        )
+    }
+    
+    let date = new Date(lastUpdate).toDateString()
+    
+    
 
     return (
         <div className={styles.container}>
@@ -15,8 +26,15 @@ const Cards = (props) => {
                     <CardContent>
 
                         <Typography color="textSecondary" gutterBottom> Infected </Typography>
-                        <Typography variant="h5"> Real Data </Typography>
-                        <Typography color="textSecondary"> Real Date </Typography> 
+                        <Typography variant="h5"> 
+                            <CountUp 
+                                start = {0}
+                                end = {confirmed.value}
+                                duration = {2.5}
+                                separator = {","}
+                            /> 
+                        </Typography>
+                        <Typography color="textSecondary"> {date} </Typography> 
                         <Typography variant="h5"> Number of active cases of COVID-19 </Typography>
                         
                     </CardContent>
@@ -26,8 +44,15 @@ const Cards = (props) => {
                     <CardContent>
 
                         <Typography color="textSecondary" gutterBottom> Recovered </Typography>
-                        <Typography variant="h5"> Real Data </Typography>
-                        <Typography color="textSecondary"> Real Date </Typography> 
+                        <Typography variant="h5"> 
+                            <CountUp 
+                                start = {0}
+                                end = {recovered.value}
+                                duration = {2.5}
+                                separator = {","}
+                            /> 
+                        </Typography>
+                        <Typography color="textSecondary"> {date} </Typography> 
                         <Typography variant="h5"> Number of recovered cases of COVID-19 </Typography>
                         
                     </CardContent>
@@ -37,8 +62,15 @@ const Cards = (props) => {
                     <CardContent>
 
                         <Typography color="textSecondary" gutterBottom> Deaths </Typography>
-                        <Typography variant="h5"> Real Data </Typography>
-                        <Typography color="textSecondary"> Real Date </Typography> 
+                        <Typography variant="h5"> 
+                            <CountUp 
+                                start = {0}
+                                end = {deaths.value}
+                                duration = {3}
+                                separator = {","}
+                            /> 
+                        </Typography>
+                        <Typography color="textSecondary"> {date} </Typography> 
                         <Typography variant="h5"> Number of deaths of COVID-19 </Typography>
                         
                     </CardContent>
