@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardContent, Typography, Grid } from '@material-ui/core';
 import CountUp from 'react-countup';
 
+import cx from 'classnames'
 import styles from './Cards.module.css';
 
 
@@ -22,7 +23,7 @@ const Cards = ( { data: { recovered, confirmed, deaths, lastUpdate}}) => {
         <div className={styles.container}>
             <Grid container spacing={3} justify="center">
 
-                <Grid item component={Card}>
+                <Grid item component={Card} xs={12} md={3} className={cx(styles.card, styles.confirmed)}>
                     <CardContent>
 
                         <Typography color="textSecondary" gutterBottom> Infected </Typography>
@@ -30,7 +31,7 @@ const Cards = ( { data: { recovered, confirmed, deaths, lastUpdate}}) => {
                             <CountUp 
                                 start = {0}
                                 end = {confirmed.value}
-                                duration = {2.5}
+                                duration = {2}
                                 separator = {","}
                             /> 
                         </Typography>
@@ -40,7 +41,7 @@ const Cards = ( { data: { recovered, confirmed, deaths, lastUpdate}}) => {
                     </CardContent>
                 </Grid>
 
-                <Grid item component={Card}>
+                <Grid item component={Card} xs={12} md={3} className={cx(styles.card, styles.recovered)}>
                     <CardContent>
 
                         <Typography color="textSecondary" gutterBottom> Recovered </Typography>
@@ -48,7 +49,7 @@ const Cards = ( { data: { recovered, confirmed, deaths, lastUpdate}}) => {
                             <CountUp 
                                 start = {0}
                                 end = {recovered.value}
-                                duration = {2.5}
+                                duration = {2}
                                 separator = {","}
                             /> 
                         </Typography>
@@ -58,7 +59,7 @@ const Cards = ( { data: { recovered, confirmed, deaths, lastUpdate}}) => {
                     </CardContent>
                 </Grid>
 
-                <Grid item component={Card}>
+                <Grid item component={Card} xs={12} md={3} className={cx(styles.card, styles.deaths)}>
                     <CardContent>
 
                         <Typography color="textSecondary" gutterBottom> Deaths </Typography>
@@ -66,7 +67,7 @@ const Cards = ( { data: { recovered, confirmed, deaths, lastUpdate}}) => {
                             <CountUp 
                                 start = {0}
                                 end = {deaths.value}
-                                duration = {3}
+                                duration = {2}
                                 separator = {","}
                             /> 
                         </Typography>
