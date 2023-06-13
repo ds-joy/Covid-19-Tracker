@@ -9,14 +9,23 @@ import './Header.css';
 
 const Header = ({countries, getSelectedCountry}) => {
 
-  const [country, setCountry]  = useState('Worldwide');
+  const [country, setCountry]  = useState("Worldwide");
 
   // event listener 
   const onCountryChange = (event) => {
-    const countryCode = event.target.value;
-    console.log(countryCode);
-    setCountry(countryCode);
-    getSelectedCountry(countryCode);
+    try {
+      let countryCode;
+      if(event === undefined) {
+        countryCode = "Worldwide";
+      } else {
+        countryCode = event.target.value;
+        setCountry(countryCode);
+        getSelectedCountry(countryCode);
+      }
+      
+    } catch(err) {
+      console.log(err);
+    }
     
   }
  
